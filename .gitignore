@@ -2,3 +2,5 @@ Task01/progression/vendor/
 Task01/progression/data/*.sqlite
 Task01/progression/.phpunit.result.cache
 Task01/progression/.php-cs-fixer.cache
+
+Task02/db/*.sqlite

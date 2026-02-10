@@ -1,0 +1,216 @@
+:root {
+    --bg: #f5f1ea;
+    --ink: #1f1c1a;
+    --accent: #f04d3a;
+    --accent-dark: #c53b2c;
+    --card: #ffffff;
+    --muted: #6e625a;
+    --line: #e5ded4;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: "EB Garamond", "Georgia", serif;
+    color: var(--ink);
+    background: radial-gradient(circle at top, #fff9f0 0%, #f3ece2 55%, #e8dfd1 100%);
+}
+
+.page {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+    padding: 40px 6vw 32px;
+}
+
+.site-header {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.brand h1 {
+    margin: 8px 0 4px;
+    font-size: clamp(28px, 4vw, 46px);
+}
+
+.brand p {
+    margin: 0;
+    color: var(--muted);
+}
+
+.brand-tag {
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: var(--accent);
+    font-weight: 700;
+}
+
+.nav {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+}
+
+.nav a {
+    text-decoration: none;
+    color: var(--ink);
+    padding: 6px 14px;
+    border-radius: 999px;
+    border: 1px solid transparent;
+    background: rgba(255, 255, 255, 0.4);
+    transition: all 0.2s ease;
+}
+
+.nav a:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+}
+
+.hero {
+    display: grid;
+    gap: 24px;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+}
+
+.hero-card,
+.game-card,
+.history-card {
+    background: var(--card);
+    padding: 28px;
+    border-radius: 24px;
+    box-shadow: 0 20px 40px rgba(62, 48, 38, 0.08);
+}
+
+.hero-card.light {
+    border: 1px dashed var(--line);
+    background: rgba(255, 255, 255, 0.6);
+}
+
+.actions {
+    margin-top: 24px;
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+.button {
+    display: inline-block;
+    background: var(--accent);
+    color: #fff;
+    padding: 10px 20px;
+    border-radius: 999px;
+    text-decoration: none;
+    border: none;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background 0.2s ease;
+}
+
+.button:hover {
+    background: var(--accent-dark);
+}
+
+.button-ghost {
+    background: transparent;
+    color: var(--accent);
+    border: 1px solid var(--accent);
+}
+
+.game {
+    display: grid;
+    gap: 24px;
+    grid-template-columns: minmax(0, 2fr) minmax(220px, 1fr);
+}
+
+.game-side {
+    padding: 24px;
+    border-radius: 20px;
+    border: 1px solid var(--line);
+    background: rgba(255, 255, 255, 0.6);
+}
+
+.progression {
+    font-size: clamp(20px, 3vw, 28px);
+    letter-spacing: 2px;
+    font-weight: 600;
+    margin: 12px 0 20px;
+}
+
+.progression.small {
+    font-size: 18px;
+}
+
+.form {
+    display: grid;
+    gap: 16px;
+}
+
+.form input {
+    width: 100%;
+    padding: 10px 12px;
+    border-radius: 12px;
+    border: 1px solid var(--line);
+    font-size: 16px;
+}
+
+.notice {
+    padding: 16px;
+    border-radius: 16px;
+    margin-bottom: 16px;
+}
+
+.notice.success {
+    background: #ecf6e8;
+    border: 1px solid #c5e2b5;
+}
+
+.notice.error {
+    background: #fff0ee;
+    border: 1px solid #f1c0b7;
+}
+
+.table {
+    display: grid;
+    gap: 10px;
+}
+
+.table-row {
+    display: grid;
+    grid-template-columns: 140px 120px 100px 1fr 80px;
+    gap: 12px;
+    padding: 12px 10px;
+    border-radius: 14px;
+    background: rgba(255, 255, 255, 0.7);
+}
+
+.table-head {
+    font-weight: 700;
+    background: #fdf7ef;
+}
+
+.mono {
+    font-family: "JetBrains Mono", "Courier New", monospace;
+    font-size: 14px;
+}
+
+.footer {
+    margin-top: auto;
+    color: var(--muted);
+    font-size: 14px;
+}
+
+@media (max-width: 900px) {
+    .game {
+        grid-template-columns: 1fr;
+    }
+
+    .table-row {
+        grid-template-columns: 1fr;
+    }
+}

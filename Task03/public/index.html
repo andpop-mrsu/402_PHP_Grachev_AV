@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Task03 - Арифметическая прогрессия</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <main class="container">
+    <header class="hero">
+      <p class="eyebrow">Task03 • Single Page Application</p>
+      <h1>Арифметическая прогрессия</h1>
+      <p class="subtitle">Введите пропущенное число в прогрессии и проверьте историю всех игр.</p>
+    </header>
+
+    <section class="card">
+      <h2>Новая игра</h2>
+      <form id="new-game-form" class="row">
+        <input id="player-name" name="player_name" type="text" maxlength="100" placeholder="Имя игрока" required>
+        <button type="submit">Начать</button>
+      </form>
+    </section>
+
+    <section id="current-game" class="card hidden">
+      <h2>Текущая игра</h2>
+      <p class="meta"><strong>Игрок:</strong> <span id="current-player"></span></p>
+      <p class="meta"><strong>Прогрессия:</strong> <span id="current-progression"></span></p>
+      <form id="step-form" class="row">
+        <input id="answer" name="answer" type="number" placeholder="Ваш ответ" required>
+        <button type="submit">Сделать ход</button>
+      </form>
+      <p id="step-result" class="result"></p>
+    </section>
+
+    <section class="card">
+      <div class="row between">
+        <h2>История игр</h2>
+        <button id="refresh-history" type="button">Обновить</button>
+      </div>
+      <ul id="games-list" class="games-list"></ul>
+    </section>
+
+    <section class="card">
+      <h2>Ходы выбранной игры</h2>
+      <pre id="steps-view" class="steps-view">Выберите игру из списка выше.</pre>
+    </section>
+
+    <p id="error" class="error"></p>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>

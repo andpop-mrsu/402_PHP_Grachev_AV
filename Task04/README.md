@@ -1,67 +1,64 @@
-# Web Application with Laravel Framework
+# Арифметическая прогрессия — Laravel
 
-This is a web application built on the **Laravel** framework. The game from previous labs has been reimplemented using Laravel.
+Веб-приложение на фреймворке Laravel. Реализация игры «Арифметическая прогрессия».
 
-## Installation
+Игроку показывается ряд из 10 чисел, образующий арифметическую прогрессию со случайным шагом. Одно из чисел заменено точками (`..`). Игрок должен угадать пропущенное число за 3 попытки.
 
-To install the application on Linux, run:
+## Установка
 
+**Linux / macOS:**
 ```bash
 make install
 ```
 
-This command will:
-- Install PHP dependencies via Composer
-- Copy `.env.example` to `.env`
-- Generate the application key
-- Create SQLite database
-- Run database migrations
-- Install npm dependencies
-- Build frontend assets
+**Windows (без make):**
+```bash
+composer install
+copy .env.example .env
+php artisan key:generate --no-interaction
+php artisan migrate --force --no-interaction
+```
 
-## Running the Application
+Команды выполняют:
+- установку PHP-зависимостей через Composer
+- копирование `.env.example` в `.env`
+- генерацию ключа приложения
+- создание файла базы данных SQLite и миграцию
 
-To start the development server:
+## Запуск
 
+**Linux / macOS:**
 ```bash
 make serve
 ```
 
-The application will be available at http://localhost:8000
+**Windows:**
+```bash
+php artisan serve
+```
 
-## Database
+Приложение будет доступно по адресу: http://localhost:8000
 
-The SQLite database is stored in `database/database.sqlite`
+## База данных
 
-## Testing
+SQLite-база данных хранится в `database/database.sqlite`.
 
-To run tests:
+В базе сохраняется информация об именах игроков, датах и результатах всех игр, предлагавшихся прогрессиях и пропущенных числах.
 
+## Тесты
+
+**Linux / macOS:**
 ```bash
 make test
 ```
 
-## Requirements
+**Windows:**
+```bash
+php artisan test
+```
 
-- PHP 8.3 or higher
+## Требования
+
+- PHP >= 8.3
 - Composer
-- Node.js (npm)
 - SQLite
-
-## Project Structure
-
-- `app/` - Application code (models, controllers, etc.)
-- `database/` - Database migrations and seeds
-- `public/` - Public assets and entry point
-- `resources/` - Views and frontend resources
-- `routes/` - Application routes
-- `storage/` - Application logs and cache
-- `tests/` - Test files
-
-## Security Vulnerabilities
-
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
-
-## License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).

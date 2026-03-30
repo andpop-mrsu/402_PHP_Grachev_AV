@@ -179,7 +179,7 @@
             color: #721c24;
         }
 
-        .status-progress {
+        .status-in_progress {
             background: #fff3cd;
             color: #856404;
         }

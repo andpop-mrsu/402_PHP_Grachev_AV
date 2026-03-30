@@ -11,7 +11,6 @@ class Game extends Model
 
     protected $fillable = [
         'player_name',
-        'started_at',
         'finished_at',
         'shown_progression',
         'full_progression',

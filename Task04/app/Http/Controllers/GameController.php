@@ -18,7 +18,7 @@ class GameController extends Controller
 
     public function show(Game $game): View
     {
-        $steps = $game->steps()->get();
+        $steps = $game->steps()->orderBy('step_number')->get();
         return view('game.show', compact('game', 'steps'));
     }
 
@@ -38,7 +38,7 @@ class GameController extends Controller
         return redirect()->route('game.play', $game->id);
     }
 
-    public function play(Game $game): View
+    public function play(Game $game): View|RedirectResponse
     {
         if ($game->status !== 'in_progress') {
             return redirect()->route('game.show', $game->id);
@@ -55,35 +55,32 @@ class GameController extends Controller
         }
 
         $validated = $request->validate([
-            'answer' => 'required|numeric',
+            'answer' => 'required|integer',
         ]);
 
         $stepNumber = $game->steps()->count() + 1;
-        $isCorrect = (int)$validated['answer'] === $game->missing_value;
+        $isCorrect = (int) $validated['answer'] === $game->missing_value;
 
         Step::create([
-            'game_id' => $game->id,
+            'game_id'     => $game->id,
             'step_number' => $stepNumber,
-            'answer' => $validated['answer'],
-            'is_correct' => $isCorrect,
+            'answer'      => $validated['answer'],
+            'is_correct'  => $isCorrect,
         ]);
 
         if ($isCorrect) {
-            $game->update([
-                'status' => 'won',
-                'finished_at' => now(),
-            ]);
-            return redirect()->route('game.show', $game->id)->with('success', 'Поздравляем! Вы угадали!');
+            $game->update(['status' => 'won', 'finished_at' => now()]);
+            return redirect()->route('game.show', $game->id)
+                ->with('success', 'Поздравляем! Вы угадали!');
         }
 
         if ($stepNumber >= 3) {
-            $game->update([
-                'status' => 'lost',
-                'finished_at' => now(),
-            ]);
-            return redirect()->route('game.show', $game->id)->with('error', 'Игра окончена. Правильный ответ: ' . $game->missing_value);
+            $game->update(['status' => 'lost', 'finished_at' => now()]);
+            return redirect()->route('game.show', $game->id)
+                ->with('error', 'Игра окончена. Правильный ответ: ' . $game->missing_value);
         }
 
-        return redirect()->route('game.play', $game->id);
+        return redirect()->route('game.play', $game->id)
+            ->with('wrong', 'Неверно! Попробуйте ещё раз.');
     }
 }

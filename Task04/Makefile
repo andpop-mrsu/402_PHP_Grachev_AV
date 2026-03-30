@@ -1,19 +1,17 @@
 .PHONY: install serve test help
 
 help:
-	@echo "Available commands:"
-	@echo "  make install - Install the application"
-	@echo "  make serve   - Start development server"
-	@echo "  make test    - Run tests"
+	@echo "Доступные команды:"
+	@echo "  make install - Установить приложение"
+	@echo "  make serve   - Запустить сервер разработки"
+	@echo "  make test    - Запустить тесты"
 
 install:
 	composer install
-	cp .env.example .env
-	php artisan key:generate
+	cp -n .env.example .env
+	php artisan key:generate --no-interaction
 	touch database/database.sqlite
-	php artisan migrate --force
-	npm install
-	npm run build
+	php artisan migrate --force --no-interaction
 
 serve:
 	php artisan serve
